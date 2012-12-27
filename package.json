@@ -1,0 +1,34 @@
+{
+  "name": "superduck",
+  "description": "Destructuring, matching and multimethods.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/nek/superduck",
+  "author": {
+    "name": "Nek",
+    "email": "nikdudnik@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nek/superduck.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nek/superduck/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nek/superduck/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/superduck",
+  "engines": {
+    "node": "0.8.12"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.11"
+  },
+  "keywords": []
+}
