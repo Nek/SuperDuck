@@ -1,10 +1,7 @@
-/*
- * superduck
- * https://github.com/nek/superduck
- *
- * Copyright (c) 2012 Nek
- * Licensed under the MIT license.
- */
+/*! superduck - v0.1.0 - 2013-01-18
+* https://github.com/nek/superduck
+* Copyright (c) 2013 Nek; Licensed MIT */
+
 // {a:_, b:Number, c:Object}, {b:$, c: {a: $}}, function(b, a)
 // {a:_, b:Number, c:Object}, unpack(_, b)({b:$, c: {a: $}}))(function(b, a) //{} )
 

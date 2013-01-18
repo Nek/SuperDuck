@@ -1,6 +1,5 @@
 /*global require:true */
-var superduck = require('../lib/superduck.js');
-var λ = require('bilby')
+if (typeof window === 'undefined') var superduck = require('../lib/superduck.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -22,7 +21,7 @@ var λ = require('bilby')
     test.ifError(value)
 */
 
-this.suite = exports['superduck'] = {
+this.superduck_test = {
     'destruct': function(test) {
         test.expect(5);
         // tests here
@@ -43,7 +42,7 @@ this.suite = exports['superduck'] = {
         test.done();
     },
     'match' : function(test) {
-        test.expect(12);
+        test.expect(14);
 
         var sd = superduck();
         var $ = sd.$;
@@ -96,7 +95,6 @@ this.suite = exports['superduck'] = {
            test.ok(r === false, "shouldn't match");
         });
         
-        /*
         sd.match({a:1, b:2})({a:1, b:2},function(r){
            test.ok(r, "should match");
         });
@@ -104,8 +102,9 @@ this.suite = exports['superduck'] = {
         sd.match({a:1, b:2})({a:1, b:2, c:3},function(r){
            test.ok(r === false, "shouldn't match");
         });
-         */
 
         test.done();
     }
 };
+
+if (exports ) exports.superduck = this.superduck_test;

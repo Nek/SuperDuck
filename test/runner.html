@@ -1,8 +1,8 @@
 <html>
   <head>
     <title>Example Test Suite</title>
-    <link rel="stylesheet" href="nodeunit.css" type="text/css" />
-    <script src="nodeunit.js"></script>
+    <link rel="stylesheet" href="../node_modules/nodeunit/dist/browser/test/nodeunit.css" type="text/css" />
+    <script src="../node_modules/nodeunit/dist/browser/test/nodeunit.js"></script>
     <script src="superduck_test.js"></script>
     <script src="../lib/superduck.js"></script>
   </head>
@@ -10,8 +10,7 @@
     <h1 id="nodeunit-header">Example Test Suite</h1>
     <script>
       nodeunit.run({
-        'Suite One': suite1,
-        'Suite Two': suite2
+        'superduck': superduck_test
       });
     </script>
   </body>
