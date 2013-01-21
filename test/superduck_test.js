@@ -23,7 +23,7 @@ if (typeof window === 'undefined') var superduck = require('../lib/superduck.js'
 
 this.superduck_test = {
     'destructor': function(test) {
-        test.expect(2);
+        test.expect(13);
         var sd = superduck();
         var $ = sd.$;
         sd.destructor({a:$})
@@ -35,16 +35,30 @@ this.superduck_test = {
          function(b) {
              test.equal(b, 6, "should be 6");
          });
-        ////////////////////////////////////////////////////////////////////////
-        // sd.destructor({a:$, b: {a:[], b: $}})({a:5},function(a, b){               //
-        //     test.equal(a, 5, 'a should be 5.');                            //
-        //     test.equal(b, undefined, 'b should be undefined.');            //
-        // });                                                                //
-        // sd.destructor({a:$, b: {a:[], b: $}})({a:5, b: {b:"aaa"}},function(a, b){ //
-        //     test.equal(a, 5, 'a should be 5.');                            //
-        //     test.equal(b, "aaa", 'b should be "aaa".');                    //
-        // });                                                                //
-        ////////////////////////////////////////////////////////////////////////
+        sd.destructor({a:$})({},function(v) {
+            test.equal(v, undefined, "should be undefined");
+        });
+        sd.destructor({a:$,b:$})({a:1,b:2},function(a,b) {
+            test.equal(a, 1, "should be 1");
+            test.equal(b, 2, "should be 2");
+        });
+        sd.destructor({a:$,b:$})({a:1},function(a,b) {
+            test.equal(a, 1, "should be 1");
+            test.equal(b, undefined, "should be undefined");
+        });
+        sd.destructor({a:$,b:$})({b:2},function(a,b) {
+            test.equal(a, undefined, "should be undefined");
+            test.equal(b, 2, "should be 2");
+        });
+
+        sd.destructor({a:$, b: {a:[], b: $}})({a:5},function(a, b){               
+             test.equal(a, 5, 'a should be 5.');                            
+             test.equal(b, undefined, 'b should be undefined.');            
+        });                                                                
+        sd.destructor({a:$, b: {a:[], b: $}})({a:5, b: {b:"aaa"}},function(a, b) { 
+            test.equal(a, 5, 'a should be 5.');                            
+            test.equal(b, "aaa", 'b should be "aaa".');                    
+        }); 
 
         test.done();
     },
