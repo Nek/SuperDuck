@@ -1,4 +1,8 @@
-# superduck
+# ATTENTION. WORK IN PROGRESS. 
+
+Though the destructuring is done and works well.
+
+# Super Duck
 
 Destructuring, matching and multimethods.
 
