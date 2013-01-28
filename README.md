@@ -7,40 +7,7 @@ Though the destructuring is done and works well.
 Destructuring, matching and multimethods.
 
 ## Getting Started
-### On the server
-Install the module with: `npm install superduck`
-
-```javascript
-var superduck = require('superduck');
-superduck.awesome(); // "awesome"
-```
-
-### In the browser
-Download the [production version][min] or the [development version][max].
-
-[min]: https://raw.github.com/nek/superduck/master/dist/superduck.min.js
-[max]: https://raw.github.com/nek/superduck/master/dist/superduck.js
-
-In your web page:
-
-```html
-<script src="dist/superduck.min.js"></script>
-<script>
-awesome(); // "awesome"
-</script>
-```
-
-In your code, you can attach superduck's methods to any object.
-
-```html
-<script>
-this.exports = Bocoup.utils;
-</script>
-<script src="dist/superduck.min.js"></script>
-<script>
-Bocoup.utils.awesome(); // "awesome"
-</script>
-```
+_(Coming soon)_
 
 ## Documentation
 _(Coming soon)_
