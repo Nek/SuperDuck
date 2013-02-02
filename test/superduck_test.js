@@ -148,4 +148,4 @@ this.superduck_test = {
     }
 };
 
-if (exports ) exports.superduck = this.superduck_test;
+if (typeof exports !== "undefined") exports.superduck = this.superduck_test;
