@@ -64,65 +64,78 @@ this.superduck_test = {
         test.done();
     },
     'match' : function(test) {
-        test.expect(14);
+        test.expect(17);
 
         var sd = superduck();
         var $ = sd.$;
+        var is = sd.is;
         
-        sd.match({a:1})({a:1},function(r){
+        sd.matcher({a:1})({a:1},function(r){
             test.ok(r, "should match");
         });
 
-        sd.match({a:1})({a:2},function(r){
+        sd.matcher({a:1})({a:2},function(r){
             test.ok(r === false, "shouldn't match");
         });
 
-        sd.match({b:1})({b:1},function(r){
+        sd.matcher({b:1})({b:1},function(r){
             test.ok(r, "should match");
         });
 
-        sd.match({b:1})({b:2},function(r){
+        sd.matcher({b:1})({b:2},function(r){
             test.ok(r === false, "shouldn't match");
         });
 
-        sd.match({a:2})({a:2},function(r){
+        sd.matcher({a:2})({a:2},function(r){
             test.ok(r, "should match");
         });
 
-        sd.match({a:2})({a:1},function(r){
+        sd.matcher({a:2})({a:1},function(r){
             test.ok(r === false, "shouldn't match");
         });
 
-        sd.match({b:2})({b:2},function(r){
+        sd.matcher({b:2})({b:2},function(r){
             test.ok(r, "should match");
         });
 
-        sd.match({b:2})({b:1},function(r){
+        sd.matcher({b:2})({b:1},function(r){
             test.ok(r === false, "shouldn't match");
         });
 
-        sd.match({b:2})({b:[1,2]},function(r){
+        sd.matcher({b:2})({b:[1,2]},function(r){
             test.ok(r === false, "shouldn't match");
         });
 
-        sd.match({b:[1,2]})({b:[1,2]},function(r){
-            test.ok(r, "should match");
-        });
-        
-        sd.match({a:1, b:2})({a: 1, b:[1,2]},function(r){
-            test.ok(r === false, "shouldn't match");
-        });
-
-        sd.match({a:1, b:2})({a: 1},function(r){
-            test.ok(r === false, "shouldn't match");
-        });
-        
-        sd.match({a:1, b:2})({a:1, b:2},function(r){
+        sd.matcher({b:[1,2]})({b:[1,2]},function(r){
             test.ok(r, "should match");
         });
         
-        sd.match({a:1, b:2})({a:1, b:2, c:3},function(r){
+        sd.matcher({a:1, b:2})({a: 1, b:[1,2]},function(r){
             test.ok(r === false, "shouldn't match");
+        });
+
+        sd.matcher({a:1, b:2})({a: 1},function(r){
+            test.ok(r === false, "shouldn't match");
+        });
+        
+        sd.matcher({a:1, b:2})({a:1, b:2},function(r){
+            test.ok(r, "should match");
+        });
+        
+        sd.matcher({a:1, b:2})({a:1, b:2, c:3},function(r){
+            test.ok(r === true, "should match");
+        });
+
+        sd.matcher({a:1, b:is.Number})({a:1, b:2, c:3},function(r){
+            test.ok(r === true, "should match");
+        });
+
+        sd.matcher({a:1, b:{c:is.Number}})({a:1, b:2, c:3},function(r){
+            test.ok(r === false, "shouldn't match");
+        });
+
+        sd.matcher({a:1, b:{c:is.Number}})({a:1, b:{c:1}},function(r){
+            test.ok(r === true, "should match");
         });
 
         test.done();
