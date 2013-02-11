@@ -1,4 +1,5 @@
 /*global require:true */
+"use strict";
 if (typeof window === 'undefined') var superduck = require('../lib/superduck.js');
 
 /*
