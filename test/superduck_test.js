@@ -193,7 +193,44 @@ this.superduck_test = {
         test.ok(is.Boolean("true") !== true, "String is not Boolean");
         test.done();
 
+    },
+    'methods': function(test) {
+        test.expect(12);
+
+        var sd = superduck();
+        var $ = sd.$;
+        var fib;
+        fib = sd.methods(
+            [{val: 1}, function() {return 1;}],
+            [{val: 2}, function() {return 1;}],
+            [{val: $}, function(v) {return fib({val:v.val-1}) + fib({val:v.val-2});}]
+        );
+
+        test.equal(fib({val:1}), 1);
+        test.equal(fib({val:2}), 1);
+        test.equal(fib({val:3}), 2);
+        test.equal(fib({val:4}), 3);
+        test.equal(fib({val:5}), 5);
+        test.equal(fib({val:6}), 8);
+        test.equal(fib({val:7}), 13);
+
+        var foo;
+        foo = sd.methods(
+            [{val: true}, function() {return 1;}],
+            [{val: false}, function() {return 2;}],
+            [{val: $}, function() {return 3;}],
+            [{val: null}, function() {return 4;}],
+            [{}, function() {return "always good";}]
+        );
+
+        test.equal(foo({val: true}), 1);
+        test.equal(foo({val: false}), 2);
+        test.equal(foo({val: "whatever"}), 3);
+        test.equal(foo({val: null}), 4);
+        test.equal(foo({val: undefined}), "always good");
+
+        test.done();
     }
 };
 
-if (typeof exports !== "undefined") exports.superduck = this.superduck_test;
+if (typeof exports !== "undefined") exports.superduck_test = this.superduck_test;
