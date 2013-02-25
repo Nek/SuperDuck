@@ -32,6 +32,8 @@
   },
   "keywords": [],
   "dependencies": {
-    "lodash": "~1.0.0-rc.3"
+    "lodash": "~1.0.0-rc.3",
+    "grunt": "~0.3.17",
+    "nodeunit": "~0.7.4"
   }
 }
