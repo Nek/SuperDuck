@@ -24,7 +24,7 @@ if (typeof window === 'undefined') var superduck = require('../lib/superduck.js'
 
 this.superduck_test = {
     'destructor': function(test) {
-        test.expect(13);
+        test.expect(14);
         var sd = superduck();
         var $ = sd.$;
         sd.destructor({a:$})
@@ -52,19 +52,23 @@ this.superduck_test = {
             test.equal(b, 2, "should be 2");
         });
 
-        sd.destructor({a:$, b: {a:[], b: $}})({a:5},function(a, b){               
+        sd.destructor({a:$, b: {b: $}})({a:5},function(a, b){
              test.equal(a, 5, 'a should be 5.');                            
              test.equal(b, undefined, 'b should be undefined.');            
         });                                                                
-        sd.destructor({a:$, b: {a:[], b: $}})({a:5, b: {b:"aaa"}},function(a, b) { 
+        sd.destructor({a:$, b: {b: $}})({a:5, b: {b:"aaa"}},function(a, b) {
             test.equal(a, 5, 'a should be 5.');                            
             test.equal(b, "aaa", 'b should be "aaa".');                    
-        }); 
+        });
+
+        sd.destructor($)( 5,function(v) {
+            test.equal(v, 5, 'a should be 5.');
+        });
 
         test.done();
     },
     'match' : function(test) {
-        test.expect(23);
+        test.expect(26);
 
         var sd = superduck();
         var $ = sd.$;
@@ -166,6 +170,16 @@ this.superduck_test = {
         });
 
         sd.matcher({b:Boolean})({b:true},function(r){
+            test.ok(r === true, "should match");
+        });
+
+        sd.matcher([])([],function(r){
+            test.ok(r === true, "should match");
+        });
+        sd.matcher(String)("",function(r){
+            test.ok(r === true, "should match");
+        });
+        sd.matcher(Apple)(new Apple(),function(r){
             test.ok(r === true, "should match");
         });
 
