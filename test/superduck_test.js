@@ -67,6 +67,31 @@ this.superduck_test = {
 
         test.done();
     },
+    'match': function(test) {
+        test.expect(12);
+
+        var sd = superduck();
+        var $ = sd.$;
+        var is = sd.is;
+
+        test.ok(sd.match(Object)({}), "should match");
+        test.ok(sd.match(Object)({a:1}), "should match");
+        test.ok(sd.match(Object)([]) === false, "should NOT match");
+
+        test.ok(sd.match({})({}), "should match");
+        test.ok(sd.match({})({a:1}), "should match");
+        test.ok(sd.match({})([]) === false, "should NOT match");
+
+        test.ok(sd.match([])({}) === false, "should NOT match");
+        test.ok(sd.match([])({a:1}) === false, "should NOT match");
+        test.ok(sd.match([])([]), "should match");
+
+        test.ok(sd.match(Array)({}) === false, "should NOT match");
+        test.ok(sd.match(Array)({a:1}) === false, "should NOT match");
+        test.ok(sd.match(Array)([]), "should match");
+
+        test.done();
+    },
     'matcher' : function(test) {
         test.expect(26);
 
@@ -186,7 +211,7 @@ this.superduck_test = {
         test.done();
     },
     'is' : function(test) {
-        test.expect(17);
+        test.expect(18);
         var sd = superduck();
         var is = sd.is;
         test.ok(is.Array([]), "It's an Array");
@@ -201,6 +226,7 @@ this.superduck_test = {
         var a = function(){};
         test.ok(is.Function(a), "It's a function");
         test.ok(is.Function(1) === false, "It's NOT a function");
+        test.ok(is.Function({}) === false, "It's NOT a function");
         test.ok(is.Function(new Function("return null")), "It's a function");
         test.ok(is.Boolean(true) === true, "true is Boolean");
         test.ok(is.Boolean(false) === true, "false is Boolean");
@@ -252,6 +278,17 @@ this.superduck_test = {
         test.equal(foo({val: "whatever"}), 3);
         test.equal(foo({val: null}), 4);
         test.equal(foo({val: undefined}), "always good");
+
+        var sd = superduck();
+        var $ = sd.$;
+        var arrOrObj;
+        arrOrObj = sd.methods(
+            [{}, function() {return "object"}],
+            [[], function() {return "array"}]
+        );
+
+//        test.equal(arrOrObj([]), "array");
+//        test.equal(arrOrObj({}), "object");
 
         test.done();
     }
