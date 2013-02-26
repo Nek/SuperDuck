@@ -245,7 +245,7 @@ this.superduck_test = {
 
     },
     'methods': function(test) {
-        test.expect(12);
+        test.expect(16);
 
         var sd = superduck();
         var $ = sd.$;
@@ -287,8 +287,19 @@ this.superduck_test = {
             [[], function() {return "array"}]
         );
 
-//        test.equal(arrOrObj([]), "array");
-//        test.equal(arrOrObj({}), "object");
+        test.equal(arrOrObj([]), "array");
+        test.equal(arrOrObj({}), "object");
+
+        var sd = superduck();
+        var $ = sd.$;
+        var arrOrObj;
+        arrOrObj = sd.methods(
+            [Object, function() {return "object"}],
+            [Array, function() {return "array"}]
+        );
+
+        test.equal(arrOrObj([]), "array");
+        test.equal(arrOrObj({}), "object");
 
         test.done();
     }
