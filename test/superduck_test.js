@@ -67,7 +67,7 @@ this.superduck_test = {
 
         test.done();
     },
-    'match' : function(test) {
+    'matcher' : function(test) {
         test.expect(26);
 
         var sd = superduck();
@@ -186,7 +186,7 @@ this.superduck_test = {
         test.done();
     },
     'is' : function(test) {
-        test.expect(11);
+        test.expect(17);
         var sd = superduck();
         var is = sd.is;
         test.ok(is.Array([]), "It's an Array");
@@ -205,6 +205,16 @@ this.superduck_test = {
         test.ok(is.Boolean(true) === true, "true is Boolean");
         test.ok(is.Boolean(false) === true, "false is Boolean");
         test.ok(is.Boolean("true") !== true, "String is not Boolean");
+
+
+        test.ok(is.Object(true) !== true, "Boolean is not Object");
+        test.ok(is.Object(false) !== true, "Boolean is not Object");
+        test.ok(is.Object("aaa") !== true, "String is not Object");
+        test.ok(is.Object([]) !== true, "Array is not Object");
+        test.ok(is.Object({}) === true, "Object literal is Object");
+        test.ok(is.Object(new Object()) === true, "Object is Object");
+
+
         test.done();
 
     },
