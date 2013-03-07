@@ -25,7 +25,7 @@ if (typeof window === 'undefined') var superduck = require('../lib/superduck.js'
 this.superduck_test = {
     'destructor': function(test) {
         test.expect(14);
-        var sd = superduck();
+        var sd = superduck;
         var $ = sd.$;
         sd.destructor({a:$})
         ({a:5}, function(a) {
@@ -70,9 +70,7 @@ this.superduck_test = {
     'match': function(test) {
         test.expect(12);
 
-        var sd = superduck();
-        var $ = sd.$;
-        var is = sd.is;
+        var sd = superduck;
 
         test.ok(sd.match(Object)({}), "should match");
         test.ok(sd.match(Object)({a:1}), "should match");
@@ -95,9 +93,8 @@ this.superduck_test = {
     'matcher' : function(test) {
         test.expect(26);
 
-        var sd = superduck();
-        var $ = sd.$;
-        var is = sd.is;
+        var sd = superduck;
+        var is = superduck.is;
 
         sd.matcher({a:1})({a:1},function(r){
             test.ok(r, "should match");
@@ -212,8 +209,8 @@ this.superduck_test = {
     },
     'is' : function(test) {
         test.expect(18);
-        var sd = superduck();
-        var is = sd.is;
+        var sd = superduck;
+        var is = superduck.is;
         test.ok(is.Array([]), "It's an Array");
         test.ok(is.Array({}) === false, "It's NOT an Array");
         test.ok(is.Array(6) === false, "It's NOT an Array");
@@ -247,8 +244,8 @@ this.superduck_test = {
     'methods': function(test) {
         test.expect(16);
 
-        var sd = superduck();
-        var $ = sd.$;
+        var sd = superduck;
+        var $ = superduck.$;
         var fib;
         fib = sd.methods(
             [{val: 1}, function() {return 1;}],
@@ -279,8 +276,8 @@ this.superduck_test = {
         test.equal(foo({val: null}), 4);
         test.equal(foo({val: undefined}), "always good");
 
-        var sd = superduck();
-        var $ = sd.$;
+        var sd = superduck;
+        var $ = superduck.$;
         var arrOrObj;
         arrOrObj = sd.methods(
             [{}, function() {return "object"}],
@@ -290,8 +287,8 @@ this.superduck_test = {
         test.equal(arrOrObj([]), "array");
         test.equal(arrOrObj({}), "object");
 
-        var sd = superduck();
-        var $ = sd.$;
+        var sd = superduck;
+        var $ = superduck.$;
         var arrOrObj;
         arrOrObj = sd.methods(
             [Object, function() {return "object"}],
