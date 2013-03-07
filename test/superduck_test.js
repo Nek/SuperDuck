@@ -241,13 +241,13 @@ this.superduck_test = {
         test.done();
 
     },
-    'methods': function(test) {
+    'match': function(test) {
         test.expect(16);
 
         var sd = superduck;
         var $ = superduck.$;
         var fib;
-        fib = sd.methods(
+        fib = sd.match(
             [{val: 1}, function() {return 1;}],
             [{val: 2}, function() {return 1;}],
             [{val: $}, function(v) {return fib({val:v.val-1}) + fib({val:v.val-2});}]
@@ -262,7 +262,7 @@ this.superduck_test = {
         test.equal(fib({val:7}), 13);
 
         var foo;
-        foo = sd.methods(
+        foo = sd.match(
             [{val: true}, function() {return 1;}],
             [{val: false}, function() {return 2;}],
             [{val: $}, function() {return 3;}],
@@ -279,7 +279,7 @@ this.superduck_test = {
         var sd = superduck;
         var $ = superduck.$;
         var arrOrObj;
-        arrOrObj = sd.methods(
+        arrOrObj = sd.match(
             [{}, function() {return "object"}],
             [[], function() {return "array"}]
         );
@@ -290,7 +290,7 @@ this.superduck_test = {
         var sd = superduck;
         var $ = superduck.$;
         var arrOrObj;
-        arrOrObj = sd.methods(
+        arrOrObj = sd.match(
             [Object, function() {return "object"}],
             [Array, function() {return "array"}]
         );
